@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothDevice
 import com.utkarsh.bluetoothchat.domain.chat.BluetoothDeviceDomain
 
 fun BluetoothDevice.toBluetoothDeviceDomain(): BluetoothDeviceDomain {
-    return com.utkarsh.bluetoothchat.domain.chat.BluetoothDeviceDomain(
+    return BluetoothDeviceDomain(
         name = name,
         address = address
     )
