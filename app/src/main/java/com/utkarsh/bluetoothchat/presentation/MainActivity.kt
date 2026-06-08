@@ -91,7 +91,7 @@ class MainActivity : ComponentActivity() {
                 }
 
                 LaunchedEffect(key1 = state.isConnected) {
-                    if(state.isConnected){
+                    if (state.isConnected) {
                         Toast.makeText(
                             applicationContext,
                             "Connected",
@@ -100,28 +100,32 @@ class MainActivity : ComponentActivity() {
                     }
                 }
 
-                Surface(
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    when {
-                        state.isConnecting -> {
-                            Column(
-                                modifier = Modifier.fillMaxSize(),
-                                horizontalAlignment = Alignment.CenterHorizontally,
-                                verticalArrangement = Arrangement.Center
-                                ){
-                                CircularProgressIndicator()
-                                Text(text = "Connecting...")
+                Scaffold() {it ->
+                    Surface(
+                        modifier = Modifier.padding(it),
+                        color = MaterialTheme.colorScheme.background
+                    ) {
+                        when {
+                            state.isConnecting -> {
+                                Column(
+                                    modifier = Modifier.fillMaxSize(),
+                                    horizontalAlignment = Alignment.CenterHorizontally,
+                                    verticalArrangement = Arrangement.Center
+                                ) {
+                                    CircularProgressIndicator()
+                                    Text(text = "Connecting...")
+                                }
                             }
-                        }
-                        else -> {
-                            DeviceScreen(
-                                state = state,
-                                onStartScan = { viewModel.startScan() },
-                                onStopScan = { viewModel.stopScan() },
-                                onDeviceClick = { viewModel.connectToDevice(it) },
-                                onStartServer = { viewModel.waitForIncomingConnection() }
-                            )
+
+                            else -> {
+                                DeviceScreen(
+                                    state = state,
+                                    onStartScan = { viewModel.startScan() },
+                                    onStopScan = { viewModel.stopScan() },
+                                    onDeviceClick = { viewModel.connectToDevice(it) },
+                                    onStartServer = { viewModel.waitForIncomingConnection() }
+                                )
+                            }
                         }
                     }
                 }
