@@ -7,7 +7,7 @@ import android.content.Intent
 import android.os.Build
 
 /***
- * class will retrive the brodcast fired by android device when new bluetooth device found
+ * class will retrieve the broadcast fired by android device when new bluetooth device found
  ***/
 class FoundDeviceReceiver(
     private val onDeviceFound: (BluetoothDevice) -> Unit
